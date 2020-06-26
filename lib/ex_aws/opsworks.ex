@@ -1,4 +1,10 @@
 defmodule ExAws.Opsworks do
+  @moduledoc """
+  Operations on AWS Opsworks Stacks
+  """
+
+  alias ExAws.Operation
+
   @namespace "OpsWorks_20130218"
 
   def describe_stacks do
@@ -13,15 +19,13 @@ defmodule ExAws.Opsworks do
     request(:describe_stacks, data)
   end
 
-
-
   defp request(action, data, opts \\ %{}) do
     operation =
       action
       |> Atom.to_string
       |> Macro.camelize
 
-    ExAws.Operation.JSON.new(:opsworks, %{
+    Operation.JSON.new(:opsworks, %{
       data: data,
       headers: [
         {"x-amz-target", "#{@namespace}.#{operation}"},

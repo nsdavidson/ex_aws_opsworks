@@ -1,18 +1,32 @@
 defmodule ExAws.Opsworks do
-  @moduledoc """
-  Documentation for `ExAws.Opsworks`.
-  """
+  @namespace "OpsWorks_20130218"
 
-  @doc """
-  Hello world.
+  def describe_stacks do
+    request(:describe_stacks, %{})
+  end
+  def describe_stacks(stack_id) when is_binary(stack_id) do
+    describe_stacks([stack_id])
+  end
 
-  ## Examples
+  def describe_stacks(stack_ids) when is_list(stack_ids) do
+    data = %{"StackIds" => stack_ids}
+    request(:describe_stacks, data)
+  end
 
-      iex> ExAws.Opsworks.hello()
-      :world
 
-  """
-  def hello do
-    :world
+
+  defp request(action, data, opts \\ %{}) do
+    operation =
+      action
+      |> Atom.to_string
+      |> Macro.camelize
+
+    ExAws.Operation.JSON.new(:opsworks, %{
+      data: data,
+      headers: [
+        {"x-amz-target", "#{@namespace}.#{operation}"},
+        {"content-type", "application/x-amz-json-1.1"}
+      ],
+    } |> Map.merge(opts))
   end
 end

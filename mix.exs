@@ -26,7 +26,7 @@ defmodule ExAws.Opsworks.MixProject do
       {:ex_aws, "~> 2.0"},
       {:jason, "~> 1.2"},
       {:hackney, ">= 0.0.0", only: [:dev, :test]},
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
 

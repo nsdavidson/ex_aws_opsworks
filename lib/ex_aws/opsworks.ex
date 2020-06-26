@@ -21,12 +21,12 @@ defmodule ExAws.Opsworks do
   end
 
   @type describe_instances_opts :: [
-    instance_ids: list(binary),
-    layer_id: binary,
-    stack_id: binary
-  ]
+          instance_ids: list(binary),
+          layer_id: binary,
+          stack_id: binary
+        ]
 
-  @spec describe_instances(opts :: describe_instances_opts) :: Operation.JSON.t
+  @spec describe_instances(opts :: describe_instances_opts) :: Operation.JSON.t()
   def describe_instances(opts) when is_list(opts) do
     data = keywords_to_data(opts)
     request(:describe_instances, data)
@@ -34,7 +34,7 @@ defmodule ExAws.Opsworks do
 
   defp keywords_to_data(keywords) when is_list(keywords) do
     keywords
-    |> Enum.into(%{}, fn {k, v} -> {k |> Atom.to_string() |> Macro.camelize, v} end)
+    |> Enum.into(%{}, fn {k, v} -> {k |> Atom.to_string() |> Macro.camelize(), v} end)
   end
 
   defp request(action, data, opts \\ %{}) do

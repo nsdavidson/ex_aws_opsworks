@@ -23,5 +23,4 @@ defmodule ExAws.OpsworksTest do
 
     assert Opsworks.describe_stacks(["abc123", "def456"]).data == expected
   end
-
 end

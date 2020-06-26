@@ -21,7 +21,10 @@ defmodule ExAws.Opsworks.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:ex_aws, "~> 2.0"},
+      {:jason, "~> 1.2"},
+      {:hackney, ">= 0.0.0", only: [:dev, :test]}
     ]
   end
 end

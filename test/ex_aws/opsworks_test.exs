@@ -23,4 +23,28 @@ defmodule ExAws.OpsworksTest do
 
     assert Opsworks.describe_stacks(["abc123", "def456"]).data == expected
   end
+
+  test "#describe_instances with instance_ids" do
+    expected = %{
+      "InstanceIds" => ["abc123"]
+    }
+
+    assert Opsworks.describe_instances(instance_ids: ["abc123"]).data == expected
+  end
+
+  test "#describe_instances with layer_id" do
+    expected = %{
+      "LayerId" => "abc123"
+    }
+
+    assert Opsworks.describe_instances(layer_id: "abc123").data == expected
+  end
+
+  test "#describe_instances with stack_id" do
+    expected = %{
+      "StackId" => "abc123"
+    }
+
+    assert Opsworks.describe_instances(stack_id: "abc123").data == expected
+  end
 end
